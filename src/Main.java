@@ -50,9 +50,9 @@ public class Main {
         // sumBiggerElementArray(arrayNum,10);//37
         // distanceNumFromEdges(arrayNum,7);//38
         //summingUpEqualBiggerAndSmallNumbers(arrayNum,50);//39
-        //int[] arrayNum3 = {1, 2, 2, 5, 5};
-        //int[] arrayNum4 = {5, 3, 3, 3, 7, 8, 2};
-        //cuttingBetweenArray(arrayNum3,arrayNum4);//40
+        int[] arrayNum3 = {1, 2, 2, 5, 5};
+        int[] arrayNum4 = {5, 3, 3, 3, 7, 8, 2};
+        cuttingBetweenArray(arrayNum3,arrayNum4);//40
         //unionBetweenArray(arrayNum3,arrayNum4);//41
         //equalValuesArrays(arrayNum3,arrayNum4);//42
         // AverageBetweenArrays(arrayNum3,arrayNum4);//43
@@ -698,6 +698,32 @@ public class Main {
         return newArrayFinal;
 
     }//40. מחיקה איברים כפולים.
+    public  static int [] removeDup(int [] array){
+        int [] newArray = new int[array.length];
+        boolean isExist = false;
+        int index = 0;
+        int counter =0;
+        for (int i = 0;i<array.length;i++){
+            for (int j=0;j<newArray.length;j++){
+                if (array[i]==newArray[j]){
+                    isExist =true;
+                    break;
+                }
+            }
+            if (!isExist){
+                newArray[index]=array[i];
+                index++;
+                counter++;
+            }else {
+                isExist =false;
+            }
+        }
+        int [] finalArray = new int[counter];
+        for (int i=0;i<finalArray.length;i++){
+            finalArray[i]=newArray[i];
+        }
+        return finalArray;
+}
 
     public static int[] unionBetweenArray(int[] numbers1, int[] numbers2) {
         int[] array = new int[numbers1.length + numbers2.length];
