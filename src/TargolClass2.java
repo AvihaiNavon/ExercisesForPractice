@@ -1,0 +1,2 @@
+public class TargolClass2 {
+}

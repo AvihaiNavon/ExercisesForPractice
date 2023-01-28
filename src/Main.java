@@ -52,13 +52,14 @@ public class Main {
         //summingUpEqualBiggerAndSmallNumbers(arrayNum,50);//39
         int[] arrayNum3 = {1, 2, 2, 5, 5};
         int[] arrayNum4 = {5, 3, 3, 3, 7, 8, 2};
-        cuttingBetweenArray(arrayNum3,arrayNum4);//40
+        //cuttingBetweenArray(arrayNum3,arrayNum4);//40
         //unionBetweenArray(arrayNum3,arrayNum4);//41
         //equalValuesArrays(arrayNum3,arrayNum4);//42
         // AverageBetweenArrays(arrayNum3,arrayNum4);//43
         //shift(arrayNum3,true,2);//44
         //digitsWithinAnArrayDigits(arrayNum3);//45
         // removeNumFromNumber(54535643,5);//46
+
     }
 
     //תרגילים קלטים

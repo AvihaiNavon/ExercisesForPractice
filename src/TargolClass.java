@@ -1,9 +1,10 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class TargolClass {
     public static void main(String[] arg) {
-        int[] numbers1 = {3, 2, 2, 2, 2, 5, 5, 6, 1, 3, 1, 1, 2};
-        int[] numbers2 = {33, 32, 156, 5};
+        //int[] numbers1 = {0, 0, 2, 10, 12, 0, 0, 0, 22, 24, 12, 4, 0, 9, 0, 9, 15, 0, 0, 9, 0, 6, 0};
+       // int[] numbers2 = {2,4,7,8,1,4,9,2,2};
         //sequenceOfIdenticalValues(numbers1, 2);// שאלה 1 א
         //biggerSumOfIdenticalValues(numbers1);//שאלה 1 ב
         // operationsAccount(1,5,7,7);//שאלה 2
@@ -12,8 +13,24 @@ public class TargolClass {
         //arrayOrder(numbers1);//שאלה 6
         //String [] names={"AfdsfBA","FSAfesadqeERT","eRwSssSeR"};
         // poldrom(names);//שאלה 7
+        //checkPoldromExtra("Race Car");
         //double[] numbersDouble = {33.234,32,156.234,5};
         // arrayDouble(numbersDouble);//שאלה 4
+        //maxSumTwo(numbers2);
+       // howMantSeq(numbers1);
+        //howMantSeqq(numbers1);
+        //rowsEqualASquareMatrix(numbers2);
+        //deleteANum(2432572,2);
+        //password("dsgsgasd1$");
+        //reverseLetters("Hello");
+        //char [] letter={'I','A','T','C','N'};
+        //amountChar("I want it, I got it",letter);
+        //String [] names={"Variables","Conditions","Loops","Arrays","Strings"};
+        //findCharInArray(names,'a');
+        //user();
+        //letterInText("i want it, i got it");
+        diamond();
+        //primeNumbers();
 
     }
 
@@ -253,6 +270,286 @@ public class TargolClass {
         }
         return texts.equals(name);
     }
-}
+
+    public static boolean checkPoldromExtra(String text) {
+        String newName = "";
+        text = text.toLowerCase();
+        for (int i = text.length() - 1; i > -1; i--) {
+            if (text.charAt(i) > 'a' && text.charAt(i) < 'z') {
+                newName += text.charAt(i);
+            }
+        }
+        String newText = "";
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) > 'a' && text.charAt(i) < 'z') {
+                newText += text.charAt(i);
+            }
+        }
+        System.out.println(newText.equals(newName));
+        return newText.equals(newName);
+    }
+
+    public static int maxSumTwo(int[] arrayNum) {
+        int sum = arrayNum[0] + arrayNum[1];
+        for (int i = 1; i < arrayNum.length - 1; i++) {
+            if (arrayNum[i] + arrayNum[i + 1] > sum) {
+                sum = arrayNum[i] + arrayNum[i + 1];
+            }
+        }
+        System.out.println(sum);
+        return sum;
+    }
+    public static int howMantSeqq(int[] numbers) {
+        int counter=0;
+        int countSum=0;
+        for (int i=0;i<numbers.length;i++){
+            if(numbers[i]!=0){
+                counter++;
+            }else if(counter>1){
+                countSum++;
+                counter=0;
+
+            }else counter=0;
+        }
+        System.out.println(countSum);
+        return countSum;
+
+    }
+
+    public static int howMantSeq(int[] numbers) {
+        int counter = 0;
+        int counterRain=0;
+        int sum;
+        boolean check=false;
+        for (int i = 0; i < numbers.length; i++) {
+            while (numbers[i] != 0) {
+                check = true;
+                counterRain++;
+                i++;
+            }
+
+            if (check&&counterRain>1) {
+                counter++;
+                i--;
+            }
+            check = false;
+            counterRain=0;
+        }
+        System.out.println(counter);
+        return counter;
+    }
+    public static boolean rowsEqualASquareMatrix(int [] array){
+        int rows= (int) Math.sqrt(array.length);
+        int sum=0;
+        int index=0;
+        int sumRows=0;
+        boolean check=false;
+        for (int j=0;j<rows;j++){
+            sumRows+=array[j];
+        }
+        for (int i=0;i<rows;i++){
+            for (int t=0;t<rows;t++){
+                sum+=array[index];
+                index++;
+            }
+            if(sum==sumRows){
+                check=true;
+                sum=0;
+            }else check=false;
+        }
+        System.out.println(check);
+        return check;
+    }
+    public static int deleteANum(int number,int num){
+        int newNum=0;
+        while (number>0){
+            if(number%10!=num){
+                newNum+=(number%10);
+                newNum*=10;
+            }
+            number/=10;
+        }
+        newNum/=10;
+        int finalNum=0;
+        while (newNum>0){
+                finalNum+=(newNum%10);
+            finalNum*=10;
+            newNum/=10;
+            }
+
+        finalNum/=10;
+        System.out.println(finalNum);
+        return newNum;
+    }
+    public static boolean password(String password){
+        boolean checkNum=false;
+        boolean checkChar=false;
+        if(password.length()>=8&&password.length()<=10){
+            for (int i=0;i<password.length();i++) {
+                if (password.charAt(i) >= '0' && password.charAt(i) <= '9') {
+                    checkNum = true;
+                } else if (password.charAt(i) == '%' || password.charAt(i) == '$' || password.charAt(i) == '_') {
+                    checkChar = true;
+                }
+
+                if (checkChar && checkNum) {
+                    break;
+                }
+            }
+        }
+        System.out.println((checkChar && checkNum));
+        return (checkChar && checkNum);
+    }
+    public static String reverseLetters(String name){
+        String newName="";
+        for(int i=name.length()-1;i>-1;i--){
+            newName+=name.charAt(i);
+        }
+
+        System.out.println(newName);
+        return newName;
+    }
+    public static char amountChar(String text,char[]letters){
+        int counter=0;
+        text=text.toUpperCase();
+        int bigCounter=0;
+        char letter='_';
+        for(int i=0;i<letters.length;i++){
+            for(int t=0;t<text.length();t++){
+                if(text.charAt(t)==letters[i])counter++;
+            }
+            if(counter>bigCounter){
+                bigCounter=counter;
+                letter=letters[i];
+            }
+            counter=0;
+        }
+        System.out.println(letter);
+        return letter;
+    }
+    public static String [] findCharInArray(String[]texts,char x){
+        boolean checkCharInText=false;
+        String [] newTexts=new String[texts.length];
+        int location=0;
+        String [] finelTexts=null;;
+        for(int i=0;i<texts.length;i++) {
+            for (int t = 0; t < texts[i].length(); t++) {
+                if (texts[i].charAt(t) == x) {
+                    checkCharInText = true;
+                    break;
+                }
+            }
+            if (checkCharInText) {
+                newTexts[location] = texts[i];
+                checkCharInText = false;
+                location++;
+            }
+        }
+             finelTexts=new String[location];
+            for(int j=0;j<finelTexts.length;j++){
+                finelTexts[j]=newTexts[j];
+                System.out.println(finelTexts[j]);
+            }
+
+
+        return finelTexts;
+    }
+    public static void user(){
+        Scanner scanner=new Scanner(System.in);
+        boolean checkUserName=true;
+        String password;
+        String userName;
+        do {
+            do {
+                System.out.println("Insert your user name:");
+                userName = scanner.nextLine();
+                for (int i = 0; i < userName.length(); i++) {
+                    if (userName.charAt(i) == '*') {
+                        checkUserName = false;
+                        break;
+                    } else checkUserName = true;
+                }
+            } while (!checkUserName);
+            do {
+                System.out.println("Insert your password: ");
+                password = scanner.nextLine();
+            } while (!password(password));
+        }while (password.equals(userName));
+        System.out.println("success");
+    }
+    public static String letterInText(String text){
+        String [] newText=text.split(" ");
+        String firstLetter="";
+        boolean check=true;
+        for(int i=0;i<newText.length;i++){
+            for(int t=0;t<firstLetter.length();t++){
+                if(newText[i].charAt(0)==firstLetter.charAt(t)){
+                    check=false;
+
+                }
+            }
+            if(check){
+                firstLetter+=newText[i].charAt(0);
+            }
+            check=true;
+        }
+        System.out.println(firstLetter);
+        return firstLetter;
+    }
+    public static void diamond(){
+        Scanner scanner = new Scanner(System.in);
+        int numUser;
+        do {
+            System.out.println("Enter an odd number greater than 3");
+            numUser=scanner.nextInt();
+        }while (!(numUser>3&&numUser%2==1));
+        boolean check=true;
+
+        int num1=numUser/2;
+        int num2=numUser-num1-num1;
+        for(int i=0;i<numUser;i++){
+            printRowsDiamond(num1,' ');
+            printRowsDiamond(num2,'*');
+            printRowsDiamond(num1,' ');
+            System.out.println();
+            if(check) {
+                num1 -= 1;
+                num2 += 2;
+            }else {
+                num1 += 1;
+                num2 -= 2;
+            }
+            if(num1==0)check=false;
+        }
+    }
+    public static void printRowsDiamond(int num,char diamondRows) {
+        for (int i = 0; i < num; i++) {
+            System.out.print(diamondRows);
+        }
+    }
+    public static void primeNumbers(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Insert your numbers you want:");
+        int number=scanner.nextInt();
+        boolean check;
+        System.out.print("2,");
+        int numbers=3;
+        for (int i=1;i<number;i++){
+            check=true;
+            for(int t=2;t<numbers;t++){
+                if(numbers%t==0) {
+                    check = false;
+                    break;
+                }
+            }
+            if(check){
+                System.out.print(numbers+",");
+            }else i--;
+            numbers++;
+        }
+    }
+
+    }
+
 
 
