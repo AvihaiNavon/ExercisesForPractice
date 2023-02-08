@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class TargolClass {
     public static void main(String[] arg) {
         //int[] numbers1 = {0, 0, 2, 10, 12, 0, 0, 0, 22, 24, 12, 4, 0, 9, 0, 9, 15, 0, 0, 9, 0, 6, 0};
-       // int[] numbers2 = {2,4,7,8,1,4,9,2,2};
+       int[] numbers2 = {1,2,3,6,9,8,9,10,11,12};
         //sequenceOfIdenticalValues(numbers1, 2);// שאלה 1 א
         //biggerSumOfIdenticalValues(numbers1);//שאלה 1 ב
         // operationsAccount(1,5,7,7);//שאלה 2
@@ -29,8 +29,18 @@ public class TargolClass {
         //findCharInArray(names,'a');
         //user();
         //letterInText("i want it, i got it");
-        diamond();
+        //diamond();
+        //diamond2();
         //primeNumbers();
+        //pibonachi();
+       // pibonachi2();
+        //narkisisti(153);
+        //missingNumber(1234678);
+        //arrayOrders(numbers2);
+        Scanner scanner=new Scanner(System.in);
+        char a=scanner.next().charAt(0);
+        System.out.println(a);
+
 
     }
 
@@ -145,6 +155,7 @@ public class TargolClass {
     }//שאלה 3
 
     public static boolean[] arrayDouble(double[] numbers) {
+
         boolean[] newArray = new boolean[numbers.length];
         for (int i = 0; i < numbers.length; i++) {
             if (numbers[i] % 1 == 0) {
@@ -522,6 +533,38 @@ public class TargolClass {
             if(num1==0)check=false;
         }
     }
+    public static void diamond2(){
+        Scanner scanner = new Scanner(System.in);
+        int numUser;
+        do {
+            System.out.println("Enter an odd number greater than 3");
+            numUser=scanner.nextInt();
+        }while (!(numUser>3&&numUser%2==1));
+        boolean check=true;
+
+        for (int i = 1; i <= numUser; i += 2) { //loop for rows
+            for (int j = 1; j <= i; j++) { //loop for prints
+                if(j==1){
+                    for(int k=i; k<=numUser; k+=2){ //loop for spaces
+                        System.out.print(" ");}
+                }
+                System.out.print("*");
+            }
+            System.out.println(" ");
+        }
+        for (int i = numUser-2; i >= 1; i -=2) { //loop for rows in the opposite order
+            for (int j = i; j >= 1; j--) { //loop for prints in the opposite order
+                if(j==i){
+                    for(int k=i; k<=numUser; k+=2){ //loop for spaces in the opposite order
+                        System.out.print(" ");}
+                }
+                System.out.print("*");
+            }
+            System.out.println(" ");
+ }
+}
+
+
     public static void printRowsDiamond(int num,char diamondRows) {
         for (int i = 0; i < num; i++) {
             System.out.print(diamondRows);
@@ -548,6 +591,133 @@ public class TargolClass {
             numbers++;
         }
     }
+    public static boolean pibonachi (){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Insert your number");
+        int number=scanner.nextInt();
+        int firstNumber=0;
+        int secondNumber=1;
+        int result;
+        int newNum=1;
+        int newResult=0;
+        int counter=0;
+
+        do{
+            result=firstNumber+secondNumber;
+            newResult=result;
+            while (newResult>0){
+                counter++;
+                newResult/=10;
+            }
+            newNum*=(Math.pow(10,counter));
+            newNum+=result;
+            firstNumber=secondNumber;
+            secondNumber=result;
+            counter=0;
+
+        }while (newNum<number);
+        System.out.println(newNum==number);
+        return newNum==number;
+
+    }
+    public static void pibonachi2() {
+        Scanner scanner = new Scanner(System.in);
+        int number = 0;
+        int tempSum = 0;
+        int firstNumber = 0;
+        int secondNumber = 1;
+        System.out.println("Enter a number");
+        number = scanner.nextInt();
+        if ((number == 0) || (number == 1)) {
+            System.out.println("This is fib");
+        } else {
+            do {
+                tempSum = firstNumber + secondNumber;
+                firstNumber = secondNumber;
+                secondNumber = tempSum;
+            }
+            while (tempSum < number);
+            if (tempSum > number) {
+                System.out.println("This is not fib");
+            } else {
+                System.out.println("This is fib");
+            }
+        }
+    }
+    public static boolean narkisisti(int num){
+        int newNum=num;
+        int counter=0;
+        while (newNum>0){
+            counter++;
+            newNum/=10;
+        }
+        newNum=num;
+        int sum=0;
+        while (newNum>0){
+            sum+=Math.pow((newNum%10),counter);
+            newNum/=10;
+        }
+        System.out.println(sum==num);
+        return sum==num;
+    }
+    public static int missingNumber(int num){
+        int numMisiing=0;
+        while (num>0){
+            if(num%10!=(num/10)%10+1){
+                numMisiing=num%10-1;
+                break;
+            }
+            num/=10;
+        }
+        System.out.println(numMisiing);
+        return numMisiing;
+    }
+    public static int [] arrayOrders(int [] array){
+        int counter=0;
+        for(int i=0;i<array.length;i++){
+            for(int t=i+1;t<array.length;t++){
+                if(array[i]==array[t]&&array[i]!=0){
+                    array[t]=0;
+                    counter++;
+                }
+            }
+        }
+        for (int i=0;i<array.length-counter;i++){
+            if(array[i]==0) {
+                for (int t = i + 1; t < array.length; t++) {
+                    if(array[t]!=0){
+                        array[i]=array[t];
+                        array[t]=0;
+                        break;
+                    }
+                }
+            }
+            System.out.print(array[i]);
+        }
+        return array;
+
+    }
+    public static int mostArrayFollowers(int [] numbers){
+        int mostCounter=0;
+        int counter=1;
+        for(int i=0;i<numbers.length-1;i++){
+            if(numbers[i]==numbers[i+1]-1){
+                counter++;
+            }else {
+                if(counter>mostCounter) {
+                    mostCounter = counter;
+                }
+                    counter=1;
+                }
+            }
+        if(counter>mostCounter) {
+            mostCounter = counter;
+        }
+        System.out.println(mostCounter);
+        return mostCounter;
+        }
+
+
 
     }
 
